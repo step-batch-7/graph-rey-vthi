@@ -16,13 +16,12 @@ const get_adjacency_list = function(paths) {
 
 const bfs = function(pairs, source, target) {
   const adjacency_list = get_adjacency_list(pairs);
-  let queue = [source];
+  let queue = paths[source] || [];
   let visited = [];
 
   while (queue.length) {
     const node = queue.shift();
     visited.push(node);
-    if (node == target) return true;
     if (adjacency_list[node]) {
       adjacency_list[node].forEach(node => {
         const not_in_visited = !visited.includes(node);
@@ -30,6 +29,7 @@ const bfs = function(pairs, source, target) {
         if (not_in_queue && not_in_visited) queue.push(node);
       });
     }
+    if (node == target) return true;
   }
   return false;
 };
