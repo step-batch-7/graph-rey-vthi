@@ -22,13 +22,13 @@ const bfs = function(pairs, source, target) {
   while (queue.length) {
     const node = queue.shift();
     visited.push(node);
-    if (adjacency_list[node]) {
+    const from_exist = Object.keys(adjacency_list).includes(node);
+    from_exist &&
       adjacency_list[node].forEach(node => {
         const not_in_visited = !visited.includes(node);
         const not_in_queue = !queue.includes(node);
         if (not_in_queue && not_in_visited) queue.push(node);
       });
-    }
     if (node == target) return true;
   }
   return false;
