@@ -16,7 +16,7 @@ const get_adjacency_list = function(paths) {
 
 const bfs = function(pairs, source, target) {
   const adjacency_list = get_adjacency_list(pairs);
-  let queue = paths[source] || [];
+  let queue = adjacency_list[source] || [];
   let visited = [];
 
   while (queue.length) {
