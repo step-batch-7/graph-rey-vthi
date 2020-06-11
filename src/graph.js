@@ -22,15 +22,15 @@ const bfs = function(pairs, source, target) {
   while (queue.length) {
     const node = queue.shift();
     visited.push(node);
-    const connected_nodes = adjacency_list[node] || [];
-    if (connected_nodes.includes(target)) return true;
-    connected_nodes.forEach(node => {
-      const not_in_visited = !visited.includes(node);
-      const not_in_queue = !queue.includes(node);
-      if (not_in_queue && not_in_visited) queue.push(node);
-    });
+    if (node == target) return true;
+    if (adjacency_list[node]) {
+      adjacency_list[node].forEach(node => {
+        const not_in_visited = !visited.includes(node);
+        const not_in_queue = !queue.includes(node);
+        if (not_in_queue && not_in_visited) queue.push(node);
+      });
+    }
   }
-
   return false;
 };
 
